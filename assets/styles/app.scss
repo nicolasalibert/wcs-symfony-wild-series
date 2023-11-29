@@ -13,7 +13,7 @@ $secondary: $color-second;
 }
 
 html {
-    height: 100vh;
+    height: 100%;
 }
 
 body {
@@ -37,6 +37,7 @@ body {
     ul#nav-links {
         display: flex;
         gap: 2rem;
+        margin: 0;
 
         li a {
             font-size: 1.5rem;
@@ -50,6 +51,11 @@ body {
         }
     }
 }
+
+
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
