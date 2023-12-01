@@ -18,6 +18,7 @@ html {
 
 body {
     background: $color-bg-fade;
+    background-attachment: scroll;
 }
 
 #main-nav {
@@ -38,19 +39,39 @@ body {
         display: flex;
         gap: 2rem;
         margin: 0;
-
-        li a {
-            font-size: 1.5rem;
-            text-decoration: none;
-            color: rgb(255, 255, 255, 0.75);
-
-            &:hover {
-                color: $color-second;
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.50);
-            }
-        }
     }
 }
+
+a {
+    font-size: 1.5rem;
+    color: rgb(255, 255, 255, 0.75);
+    text-decoration: none;
+
+    &:hover {
+        color: $color-second;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.50);
+    }
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+#main-content {
+    padding: 1rem;
+
+    #main-title {
+        text-align: center;
+        margin: 2rem;
+    }
+
+    #program-list li {
+        margin: 1rem 0;
+    }
+}
+
+
 
 
 

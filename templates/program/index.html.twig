@@ -5,8 +5,26 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>
+    <h1 id="main-title">
         {{website}} Index
     </h1>
     {# <img src="{{ asset('build/images/oui.png') }}" alt=""/> #}
+    <a href=" {{path("category_index")}}">Catégories</a>
+
+    <ul id="program-list">
+        {% for program in programs %}
+            <li>
+                <h2>{{ loop.index }} / {{ program.title }}</h2>
+                <p>Catégorie : {{ program.category.name }}</p>
+                <p>{{ program.synopsis }}</p>
+                <a href=" {{ path("program_show", {id: program.id}) }} ">Voir la fiche</a>
+            </li>
+        {% else %}
+            <li>
+                <p>Aucun programme à afficher</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ path('app_index') }}">Accueil</a>
 {% endblock content %}
