@@ -24,9 +24,9 @@ class ProgramController extends AbstractController
     #[Route('/show/{id<\d+>}', methods: ['GET'], name: 'show')]
     public function show(int $id, ProgramRepository $programRepository): Response
     {
-        $program = $programRepository->findOneBy(['id' => $id]);
-        // $program = $programRepository->findOenById($id);     // same
-        // $program = $programRepository->find($id);            // same
+        // $program = $programRepository->findOneBy(['id' => $id]); // same
+        // $program = $programRepository->findOenById($id);         // same
+        $program = $programRepository->find($id);                   // same
 
         if(!$program) {
             throw $this->createNotFoundException(

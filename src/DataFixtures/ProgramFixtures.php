@@ -37,6 +37,7 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program->setSynopsis(
                 self::SYNOPSIS[array_rand(self::SYNOPSIS)]);
             $manager->persist($program);
+            $this->addReference('program_' . $programName, $program);
         }
 
         $manager->flush();

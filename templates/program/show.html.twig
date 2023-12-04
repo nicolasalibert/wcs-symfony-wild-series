@@ -5,8 +5,16 @@
         <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
         <div class="media-body">
             <h1 class="mt-0">{{ program.title }}</h1>
-            <p>{{ program.synopsis }}</p>
+            <p>Synopsis : {{ program.synopsis }}</p>
             <p>Catégorie : {{ program.category.name }}</p>
+            <div class="seasons">
+                Liste des saisons disponibles :
+                <ul>
+                    {% for season in program.seasons %}
+                        <li><a href=" {{ path('') }}"></a>Saison {{loop.index}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 
