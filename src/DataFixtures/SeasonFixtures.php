@@ -26,14 +26,15 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
         // $product = new Product();
         // $manager->persist($product);
 
-        foreach (ProgramFixtures::PROGRAMS as $programIndex => $program) {
+        foreach (ProgramFixtures::PROGRAMS as $programIndex => $programName) {
             foreach (self::DESCRIPTIONS as $descriptionIndex => $description) {
                 $season = new Season();
-                $season->setNumber($descriptionIndex);
+                $season->setNumber($descriptionIndex+1);
                 $season->setYear(rand(1990, 2023));
                 $season->setDescription($description);
                 $season->setProgram($this->getReference('program_' . ProgramFixtures::PROGRAMS[$programIndex]));
                 $manager->persist($season);
+                $this->addReference($programName . '_season' . $descriptionIndex+1, $season);
             }
         }
 
