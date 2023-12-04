@@ -26,7 +26,7 @@ class ProgramController extends AbstractController
         ]); 
     }
 
-    #[Route('/show/{id}', methods: ['GET'], name: 'show')]
+    #[Route('/show/{id<\d+>}', methods: ['GET'], name: 'show')]
     public function show(Program $program): Response
     {
         // $program = $programRepository->findOneBy(['id' => $id]); // same
