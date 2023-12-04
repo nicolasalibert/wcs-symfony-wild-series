@@ -7,24 +7,20 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
+use Faker\Factory;
+
 class EpisodeFixtures extends Fixture implements DependentFixtureInterface
 {
-    const SYNOPSIS = [
-        'Episode pilote, coolos',
-        'Rohlala le suspens khoya',
-        'Ouais ouais sapass',
-        'On s\'ennuie un peu là...',
-        'Super épisode!',
-    ];
-
     public function load(ObjectManager $manager): void
     {
-        foreach (ProgramFixtures::PROGRAMS as $programIndex => $programName) {
+        $faker = Factory::create();
+        
+        foreach (ProgramFixtures::PROGRAMS as $programName) {
             for ($seasonIndex = 1 ; $seasonIndex <= 5 ; $seasonIndex++) {
-                for ($episodeIndex = 1 ; $episodeIndex <= 3 ; $episodeIndex++) {
+                for ($episodeIndex = 1 ; $episodeIndex <= 10 ; $episodeIndex++) {
                     $episode = new Episode();
-                    $episode->setTitle('Episode ' . $episodeIndex . ' : un épisode que il est bien');
-                    $episode->setSynopsis(EpisodeFixtures::SYNOPSIS[$episodeIndex]);
+                    $episode->setTitle($faker->sentence(12));
+                    $episode->setSynopsis($faker->paragraph(3));
                     $episode->setSeason($this->getReference($programName . '_season' . $seasonIndex));
                     $episode->setNumber($episodeIndex);
                     $manager->persist($episode);

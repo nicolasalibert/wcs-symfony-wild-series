@@ -7,34 +7,23 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
+use Faker\Factory;
+
 class SeasonFixtures extends Fixture implements DependentFixtureInterface
 {
-    const YEARS = [
-        1998, 2001, 2003, 2004, 2007, 2011, 2014, 2018, 2022,
-    ];
-
-    const DESCRIPTIONS = [
-        'Faut bien commencer quelque part...',
-        'Patate cette saison gros!!',
-        'Ouais c\'est pas la meilleure celle-ci',
-        'Ouais elle passe bien cette saison ouais',
-        'Dernière saison miam',
-    ];
-
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
+        $faker = Factory::create();
 
         foreach (ProgramFixtures::PROGRAMS as $programIndex => $programName) {
-            foreach (self::DESCRIPTIONS as $descriptionIndex => $description) {
+            for ($i = 1 ; $i <= 5 ; $i++) {
                 $season = new Season();
-                $season->setNumber($descriptionIndex+1);
-                $season->setYear(rand(1990, 2023));
-                $season->setDescription($description);
+                $season->setNumber($faker->numberBetween(1, 8));
+                $season->setYear($faker->numberBetween(1990, 2023));
+                $season->setDescription($faker->paragraph(1));
                 $season->setProgram($this->getReference('program_' . ProgramFixtures::PROGRAMS[$programIndex]));
                 $manager->persist($season);
-                $this->addReference($programName . '_season' . $descriptionIndex+1, $season);
+                $this->addReference($programName . '_season' . $i, $season);
             }
         }
 
