@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
-    <h1>{{season.program.title}}</h1>
+    <h1>{{program.title}}</h1>
     <h2>Saison {{season.number}}</h2>
     <ul>
         <li>
@@ -14,12 +14,12 @@
             Liste des épisodes :
             <ul>
                 {% for episode in season.episodes %}
-                    <li>{{episode.number}} : {{episode.title}}</li>
+                    <li><a href="{{ path('program_episode_show', {program: program.id, season: season.id, episode: episode.id}) }}">{{episode.number}}</a> : {{episode.title}}</li>
                 {% endfor %}
             </ul>
         </li>
     </ul>
 
 
-    <a href="{{ path('program_show', {id: season.program.id}) }}">Retour au programme</a>
+    <a href="{{ path('program_show', {id: program.id}) }}">Retour au programme</a>
 {% endblock content %}
