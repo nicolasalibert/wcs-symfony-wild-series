@@ -1,4 +1,4 @@
-@import "~bootstrap/scss/bootstrap";
+// @import "~bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Michroma&family=Roboto:wght@400;700&display=swap');
 
 $color-bg-fade: linear-gradient(180deg, #925DE7 0%, #38719B 100%);
@@ -56,6 +56,10 @@ a {
 p {
     margin: 0;
     padding: 0;
+}
+
+.table {
+    background-color: #e4e4e47d;
 }
 
 #main-content {

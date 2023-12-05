@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block content %}
+{% block body %}
     <ul>
         {% for category in categories %}
             <li><a href="{{ path("category_show", {categoryName: category.name}) }}">{{category.name}}</a></li>
@@ -9,4 +9,4 @@
 
     <a href="{{ path('category_new') }}">Ajouter une catégorie</a><br>
     <a href="{{ path("program_index") }}"><< Catalogue</a>
-{% endblock content %}
+{% endblock body %}

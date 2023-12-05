@@ -4,7 +4,7 @@
     Wild Series
 {% endblock title %}
 
-{% block content %}
+{% block body %}
     <h1 id="main-title">
         {{website}} Index
     </h1>
@@ -27,7 +27,9 @@
             <li>
                 <a href="{{ path('program_new') }}">Ajouter un programme</a>
             </li>
+            <li>
+                <a href="{{ path('app_season_index') }}">Ajouter une saison</a>
+            </li>
     </ul>
-
     <a href="{{ path('app_index') }}">Accueil</a>
-{% endblock content %}
+{% endblock body %}

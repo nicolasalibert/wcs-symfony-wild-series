@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block content %}
+{% block body %}
     <h1>{{program.title}}</h1>
     <h2>Saison {{season.number}}</h2>
     <ul>
@@ -21,5 +21,5 @@
     </ul>
 
 
-    <a href="{{ path('program_show', {id: program.id}) }}">Retour au programme</a>
-{% endblock content %}
+    <a href="{{ path('program_show', {id: program.id}) }}"><< Retour au programme</a>
+{% endblock body %}
