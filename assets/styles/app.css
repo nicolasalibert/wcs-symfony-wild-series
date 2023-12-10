@@ -3,32 +3,9 @@
   font-family: "Michroma", sans-serif;
 }
 
-html {
-  height: 100%;
-}
-
 body {
   background: linear-gradient(180deg, #925DE7 0%, #38719B 100%);
-  background-attachment: scroll;
-}
-
-#main-nav {
-  height: 120px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.33) 100%);
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 3rem;
-}
-#main-nav h1 {
-  color: #1BE4D8;
-  font-size: 2rem;
-}
-#main-nav ul#nav-links {
-  display: flex;
-  gap: 2rem;
-  margin: 0;
+  background-attachment: fixed;
 }
 
 a {
@@ -41,22 +18,82 @@ a:hover {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-p {
-  margin: 0;
-  padding: 0;
+header #main-nav {
+  height: 120px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.33) 100%);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3rem;
 }
-
-.table {
-  background-color: rgba(228, 228, 228, 0.4901960784);
+header #main-nav h1 {
+  color: #1BE4D8;
+  font-size: 2rem;
+}
+header #main-nav ul#nav-links {
+  display: flex;
+  gap: 2rem;
+  margin: 0;
 }
 
 #main-content {
-  padding: 1rem;
+  padding: 2rem 3rem;
 }
-#main-content #main-title {
+#main-content h1#main-title {
   text-align: center;
-  margin: 2rem;
+  margin: 0 0 1rem 0;
 }
 #main-content #program-list li {
   margin: 1rem 0;
+}
+#main-content p {
+  margin: 0;
+  padding: 0;
+}
+#main-content .table {
+  background-color: rgba(228, 228, 228, 0.4901960784);
+}
+#main-content ul#card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  max-width: 1440px;
+  margin: 0 auto;
+  gap: 1.5rem;
+}
+#main-content ul#card-container li.card {
+  margin: 0 auto;
+  padding: 1rem;
+  border: 0.5px black solid;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  position: relative;
+  height: 24rem;
+  width: 20rem;
+}
+#main-content ul#card-container li.card .program-title {
+  color: rgba(255, 245, 240, 0.8);
+  text-align: center;
+}
+#main-content ul#card-container li.card .program-details {
+  position: absolute;
+  bottom: 1rem;
+  right: 0;
+  left: 0;
+  text-align: center;
+  font-size: 1.2rem;
+}
+#main-content ul#top-nav,
+#main-content ul#bottom-nav {
+  display: flex;
+  margin: 1rem 0;
+  gap: 2rem;
+}
+#main-content ul#top-nav {
+  justify-content: flex-start;
+}
+#main-content ul#bottom-nav {
+  justify-content: flex-end;
 }/*# sourceMappingURL=app.css.map */

@@ -36,9 +36,12 @@ class ProgramController extends AbstractController
         $form = $this->createForm(ProgramType::class, $program);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($program);
             $entityManager->flush();
+            return $this->render('program/show.html.twig', [
+                'program' => $program
+            ]);
         }
 
         return $this->render('program/new.html.twig', [
@@ -53,11 +56,11 @@ class ProgramController extends AbstractController
         // $program = $programRepository->findOenById($id);         // same
         // $program = $programRepository->find($id);                // same
 
-        if(!$program) {
-            throw $this->createNotFoundException(
-                'No program with id : ' . $id . ' found in program\'s table.'
-            );
-        }
+        // if(!$program) {
+        //     throw $this->createNotFoundException(
+        //         'No program with id : ' . $id . ' found in program\'s table.'
+        //     );
+        // }
 
         return $this->render('program/show.html.twig', [
             'program' => $program

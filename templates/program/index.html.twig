@@ -6,24 +6,36 @@
 
 {% block body %}
     <h1 id="main-title">
-        {{website}} Index
+        {{website}} 🎬 Catalogue 
     </h1>
     {# <img src="{{ asset('build/images/oui.png') }}" alt=""/> #}
-    <a href=" {{path("category_index")}}">Catégories</a>
 
-    <ul id="program-list">
+    <ul id="top-nav">
+        <li>
+            <a href="{{ path('app_index') }}">Accueil</a>
+        </li>
+        <li>
+            <a href=" {{path("category_index")}}">Catégories</a>
+        </li>
+    </ul>
+
+    <ul id="card-container">
         {% for program in programs %}
-            <li>
-                <h2>{{ loop.index }} / {{ program.title }}</h2>
-                <p>Catégorie : {{ program.category.name }}</p>
-                <p>{{ program.synopsis }}</p>
-                <a href=" {{ path("program_show", {id: program.id}) }} ">Voir la fiche</a>
+            <li class="card">
+                <h2 class="program-title">{{ program.title }}</h2>
+                <p><span class="program-category">Catégorie</span> : {{ program.category.name }}</p>
+                <p class="program-synopsis">{{ program.synopsis }}</p>
+                
+
+                <a class="program-details" href=" {{ path("program_show", {id: program.id}) }} ">ℹ️ Voir la fiche • {{ loop.index }}</a>
             </li>
         {% else %}
             <li>
                 <p>Aucun programme à afficher</p>
             </li>
         {% endfor %}
+    </ul>
+    <ul id="bottom-nav">
             <li>
                 <a href="{{ path('program_new') }}">Ajouter un programme</a>
             </li>
@@ -31,5 +43,4 @@
                 <a href="{{ path('app_season_index') }}">Ajouter une saison</a>
             </li>
     </ul>
-    <a href="{{ path('app_index') }}">Accueil</a>
 {% endblock body %}

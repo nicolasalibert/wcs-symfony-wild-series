@@ -1,12 +1,18 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <ul>
+    <ul id="card-container">
         {% for category in categories %}
-            <li><a href="{{ path("category_show", {categoryName: category.name}) }}">{{category.name}}</a></li>
+            <li class="card"><a href="{{ path("category_show", {categoryName: category.name}) }}">{{category.name}}</a></li>
         {% endfor %}
     </ul>
 
-    <a href="{{ path('category_new') }}">Ajouter une catégorie</a><br>
-    <a href="{{ path("program_index") }}"><< Catalogue</a>
+    <ul id="bottom-nav">
+        <li>
+            <a href="{{ path("program_index") }}"><< Catalogue</a>
+        </li>
+        <li>
+            <a href="{{ path('category_new') }}">Ajouter une catégorie</a><br>
+        </li>
+    </ul>
 {% endblock body %}

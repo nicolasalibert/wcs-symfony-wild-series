@@ -4,12 +4,12 @@
 
     <h1>{{category.name}}</h1>
 
-    <ul>
+    <ul id="card-container">
         {% for program in programs %}
-            <li>
-                <h2>{{program.id}} - {{program.title}}</h2>
-                <p>{{program.synopsis}}</p>
-                <a href=" {{ path("program_show", {id: program.id}) }}">Voir la fiche</a>
+            <li class="card">
+                <h2 class="program-title">{{program.id}} - {{program.title}}</h2>
+                <p class="program-synopsis">{{program.synopsis}}</p>
+                <a class="program-details" href=" {{ path("program_show", {id: program.id}) }}">ℹ️ Voir la fiche</a>
             </li>
         {% else %}
             <li>

@@ -18,7 +18,7 @@ class SeasonFixtures extends Fixture implements DependentFixtureInterface
         foreach (ProgramFixtures::PROGRAMS as $programIndex => $programName) {
             for ($i = 1 ; $i <= 5 ; $i++) {
                 $season = new Season();
-                $season->setNumber($faker->numberBetween(1, 8));
+                $season->setNumber($i);
                 $season->setYear($faker->numberBetween(1990, 2023));
                 $season->setDescription($faker->paragraph(1));
                 $season->setProgram($this->getReference('program_' . ProgramFixtures::PROGRAMS[$programIndex]));

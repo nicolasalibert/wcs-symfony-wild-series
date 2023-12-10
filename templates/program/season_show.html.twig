@@ -1,25 +1,28 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <h1>{{program.title}}</h1>
-    <h2>Saison {{season.number}}</h2>
+    <h1 id="program-title">{{program.title}}</h1>
+    <h2 id="season-number">Saison {{season.number}}</h2>
     <ul>
-        <li>
+        <li id="season-year">
             Année : {{season.year}}
         </li>
-        <li>
+        <li id="season-description">
             Description : {{season.description}}
         </li>
         <li>
             Liste des épisodes :
-            <ul>
+            <ul id="card-container">
                 {% for episode in season.episodes %}
-                    <li><a href="{{ path('program_episode_show', {program: program.id, season: season.id, episode: episode.id}) }}">{{episode.number}}</a> : {{episode.title}}</li>
+                    <li class="card"><a href="{{ path('program_episode_show', {program: program.id, season: season.id, episode: episode.id}) }}">{{episode.number}}</a> : {{episode.title}}</li>
                 {% endfor %}
             </ul>
         </li>
     </ul>
 
-
-    <a href="{{ path('program_show', {id: program.id}) }}"><< Retour au programme</a>
+    <ul id="bottom-nav">
+        <li>
+            <a href="{{ path('program_show', {id: program.id}) }}"><< Saisons</a>
+        </li>
+    </ul>
 {% endblock body %}

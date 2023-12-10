@@ -9,9 +9,9 @@
             <p>Catégorie : {{ program.category.name }}</p>
             <div class="seasons">
                 Liste des saisons disponibles :
-                <ul>
+                <ul id="card-container">
                     {% for season in program.seasons %}
-                        <li>
+                        <li class="card">
                             <a href="{{ path('program_season_show', {program: program.id, season: season.id}) }}">Saison {{loop.index}}</a> :
                             <p>{{season.description}}</p>
                         </li>
@@ -21,7 +21,9 @@
         </div>
     </div>
 
-    <a href="{{ path('program_index') }}">
-        << Retour à la liste des programmes
-    </a>
+    <ul id="bottom-nav">
+        <li>
+            <a href="{{ path('program_index') }}"><< Catalogue</a>
+        </li>
+    </ul>
 {% endblock body %}
