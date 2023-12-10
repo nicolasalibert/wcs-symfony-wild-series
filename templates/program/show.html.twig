@@ -6,6 +6,7 @@
     <h1>{{ program.title }}</h1>
     <p>Synopsis : {{ program.synopsis }}</p>
     <p>Catégorie : {{ program.category.name }}</p>
+    <p>Durée totale : {{ programDuration }}</p>
 
     <h2>Acteurs :</h2>
     <ul class="actors-list">
@@ -21,7 +22,7 @@
         <ul class="card-container">
             {% for season in program.seasons %}
                 <li class="card">
-                    <a href="{{ path('program_season_show', {program: program.id, season: season.id}) }}">Saison {{loop.index}}</a> :
+                    <a href="{{ path('program_season_show', {slug: program.slug, season: season.id}) }}">Saison {{loop.index}}</a> :
                     <p>{{season.description}}</p>
                 </li>
             {% endfor %}

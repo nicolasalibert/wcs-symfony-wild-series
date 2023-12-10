@@ -9,7 +9,7 @@
             <li class="card">
                 <h2 class="program-title">{{program.id}} - {{program.title}}</h2>
                 <p class="program-synopsis">{{program.synopsis}}</p>
-                <a class="program-details" href=" {{ path("program_show", {id: program.id}) }}">ℹ️ Voir la fiche</a>
+                <a class="program-details" href=" {{ path("program_show", {slug: program.slug}) }}">ℹ️ Voir la fiche</a>
             </li>
         {% else %}
             <li>

@@ -7,9 +7,12 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class ProgramFixtures extends Fixture implements DependentFixtureInterface
 {
+    private $slugger;
+
     const PROGRAMS = [
         'BoJack Horseman',
         'Mr Robot',
@@ -29,6 +32,11 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
         'En fait c\'est un avis pas un synopsis ça merde',
     ];
 
+    public function __construct(SluggerInterface $slugger)
+    {
+        $this->slugger = $slugger;
+    }
+
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
@@ -38,6 +46,8 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             $program->setTitle($programName);
             $program->setCategory($this->getReference('category_' . CategoryFixtures::CATEGORIES[array_rand(CategoryFixtures::CATEGORIES)]));
             $program->setSynopsis($faker->sentence(8));
+            $slug = $this->slugger->slug($program->getTitle());
+            $program->setSlug($slug);
             $manager->persist($program);
             $this->addReference('program_' . $programName, $program);
         }

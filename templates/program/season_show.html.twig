@@ -14,7 +14,7 @@
             Liste des épisodes :
             <ul class="card-container">
                 {% for episode in season.episodes %}
-                    <li class="card"><a href="{{ path('program_episode_show', {program: program.id, season: season.id, episode: episode.id}) }}">{{episode.number}}</a> : {{episode.title}}</li>
+                    <li class="card"><a href="{{ path('program_episode_show', {slug: program.slug, season: season.id, episode: episode.id}) }}">{{episode.number}}</a> : {{episode.title}}</li>
                 {% endfor %}
             </ul>
         </li>
@@ -22,7 +22,7 @@
 
     <ul id="bottom-nav">
         <li>
-            <a href="{{ path('program_show', {id: program.id}) }}"><< Saisons</a>
+            <a href="{{ path('program_show', {slug: program.slug}) }}"><< Saisons</a>
         </li>
     </ul>
 {% endblock body %}

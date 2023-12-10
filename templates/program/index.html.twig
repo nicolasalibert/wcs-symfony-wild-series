@@ -26,7 +26,7 @@
                 <p><span class="program-category">Catégorie</span> : {{ program.category.name }}</p>
                 <p class="program-synopsis">{{ program.synopsis }}</p>
                 
-                <a class="program-details" href=" {{ path("program_show", {id: program.id}) }} ">ℹ️ Voir la fiche • {{ loop.index }}</a>
+                <a class="program-details" href=" {{ path("program_show", {slug: program.slug}) }} ">ℹ️ Voir la fiche • {{ loop.index }}</a>
             </li>
         {% else %}
             <li>
