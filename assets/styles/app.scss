@@ -133,6 +133,8 @@ header #main-nav {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        width: 80%;
+        margin: 0 auto;
     }
 
     ul#top-nav,

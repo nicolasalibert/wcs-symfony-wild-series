@@ -105,6 +105,8 @@ header #main-nav ul#nav-links {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  width: 80%;
+  margin: 0 auto;
 }
 #main-content ul#top-nav,
 #main-content ul#bottom-nav {
