@@ -35,6 +35,8 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted()) {
             $entityManager->persist($category);
             $entityManager->flush();
+
+            $this->addFlash('success', 'The new program has been created');
         }
 
         return $this->render('category/new.html.twig', [

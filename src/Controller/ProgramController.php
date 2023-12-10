@@ -12,21 +12,30 @@ use App\Form\ProgramType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 #[Route('/program', name: 'program_')]
 class ProgramController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(ProgramRepository $programRepository): Response
+    public function index(ProgramRepository $programRepository, RequestStack $requestStack): Response
     {
+        // $session = $requestStack->getSession();
+
+        // if (!$session->has('total')) {
+        //     $session->set('total', 0);
+        // }
+        // $total = $session->get('total');
+
         $programs = $programRepository->findAll();
 
         return $this->render('program/index.html.twig', [
             'website'       => 'Wild Series',
             'programs'      => $programs,
-        ]); 
+        ]);
     }
 
     #[Route('/new', name: 'new')]
@@ -39,8 +48,11 @@ class ProgramController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($program);
             $entityManager->flush();
-            return $this->render('program/show.html.twig', [
-                'program' => $program
+
+            $this->addFlash('success', 'The new program has been created');
+
+            return $this->redirectToRoute('program_show', [
+                'id' => $program->getId()
             ]);
         }
 
@@ -53,7 +65,7 @@ class ProgramController extends AbstractController
     public function show(Program $program): Response
     {
         // $program = $programRepository->findOneBy(['id' => $id]); // same
-        // $program = $programRepository->findOenById($id);         // same
+        // $program = $programRepository->findOneById($id);         // same
         // $program = $programRepository->find($id);                // same
 
         // if(!$program) {
