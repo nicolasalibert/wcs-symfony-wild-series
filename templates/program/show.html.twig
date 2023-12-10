@@ -7,9 +7,18 @@
     <p>Synopsis : {{ program.synopsis }}</p>
     <p>Catégorie : {{ program.category.name }}</p>
 
+    <h2>Acteurs :</h2>
+    <ul class="actors-list">
+        {% for actor in program.actors %}
+            <li><a href="{{ path('actor_show', {id: actor.id}) }}">{{ actor.name }}</a></li>
+        {% else %}
+            <li>Aucun acteur pour cette série</li>
+        {% endfor %}
+    </ul>
+
     <div class="seasons">
-        Liste des saisons disponibles :
-        <ul id="card-container">
+        <h2>Liste des saisons disponibles :</h2>
+        <ul class="card-container">
             {% for season in program.seasons %}
                 <li class="card">
                     <a href="{{ path('program_season_show', {program: program.id, season: season.id}) }}">Saison {{loop.index}}</a> :

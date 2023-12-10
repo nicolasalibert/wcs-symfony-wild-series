@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <ul id="card-container">
+    <ul class="card-container">
         {% for category in categories %}
             <li class="card"><a href="{{ path("category_show", {categoryName: category.name}) }}">{{category.name}}</a></li>
         {% endfor %}

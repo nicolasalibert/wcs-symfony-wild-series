@@ -92,7 +92,7 @@ header #main-nav {
         background-color: #e4e4e47d;
     }
 
-    ul#card-container {
+    ul.card-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         max-width: 1440px;
@@ -127,6 +127,12 @@ header #main-nav {
                 font-size: 1.2rem;
             }
         }
+    }
+
+    ul.actors-list {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
     }
 
     ul#top-nav,

@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1>{{ actor.name }}</h1>
+    <h2>Programs :</h2>
+
+    <ul class="card-container">
+        {% for program in actor.programs %}
+            <li class="card">
+                <h2 class="program-title">{{ program.title }}</h2>
+                <p><span class="program-category">Catégorie</span> : {{ program.category.name }}</p>
+                <p class="program-synopsis">{{ program.synopsis }}</p>
+
+                <a class="program-details" href=" {{ path("program_show", {id: program.id}) }} ">ℹ️ Voir la fiche • {{ loop.index }}</a>
+            </li>
+        {% else %}
+            <li>
+                <p>Aucun programme à afficher</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock body %}

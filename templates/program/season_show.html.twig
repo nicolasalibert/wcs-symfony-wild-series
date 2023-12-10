@@ -12,7 +12,7 @@
         </li>
         <li>
             Liste des épisodes :
-            <ul id="card-container">
+            <ul class="card-container">
                 {% for episode in season.episodes %}
                     <li class="card"><a href="{{ path('program_episode_show', {program: program.id, season: season.id, episode: episode.id}) }}">{{episode.number}}</a> : {{episode.title}}</li>
                 {% endfor %}
