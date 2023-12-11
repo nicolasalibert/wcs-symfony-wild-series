@@ -11,10 +11,13 @@ use App\Form\ProgramType;
 
 use App\Service\ProgramDuration;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 // use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -41,7 +44,7 @@ class ProgramController extends AbstractController
     }
 
     #[Route('/new', name: 'new')]
-    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer, SluggerInterface $slugger): Response
     {
         $program = new Program();
         $form = $this->createForm(ProgramType::class, $program);
@@ -53,10 +56,20 @@ class ProgramController extends AbstractController
             $entityManager->persist($program);
             $entityManager->flush();
 
+            $email = (new Email())
+                    ->from($this->getParameter('mailer_from'))
+                    ->to('recipient@mail.com')
+                    ->subject('Une nouvelle série vient d\'être publiée')
+                    ->html($this->renderView('Program/newProgramEmail.html.twig', [
+                        'program' => $program
+                    ]));
+
+            $mailer->send($email);
+
             $this->addFlash('success', 'The new program has been created');
 
             return $this->redirectToRoute('program_show', [
-                'id' => $program->getId()
+                'slug' => $program->getSlug()
             ]);
         }
 
@@ -89,8 +102,12 @@ class ProgramController extends AbstractController
         ]);
     }
 
-    #[Route('/{slug}/season/{season}/episode/{episode}', methods: ['GET'], name: 'episode_show')]
-    public function showEpisode(Program $program, Season $season, Episode $episode, string $slug): Response
+    #[Route('/{programSlug}/season/{season}/episode/{episodeSlug}', methods: ['GET'], name: 'episode_show')]
+    public function showEpisode(
+        #[MapEntity(mapping: ['programSlug' => 'slug'])] Program $program,
+        Season $season,
+        #[MapEntity(mapping: ['episodeSlug' => 'slug'])] Episode $episode
+        ): Response
     {
         return $this->render('program/episode_show.html.twig', [
             'program' => $program,

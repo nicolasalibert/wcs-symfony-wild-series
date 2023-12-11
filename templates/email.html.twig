@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="{{ asset('build/images/favicon.svg') }}" />
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Michroma&family=Roboto:wght@400;700&display=swap");
+            * {
+              font-family: "Michroma", sans-serif;
+            }
+            
+            body {
+              background: linear-gradient(180deg, #925DE7 0%, #38719B 100%);
+              background-attachment: fixed;
+            }
+            
+            a {
+              font-size: 1.5rem;
+              color: rgba(255, 255, 255, 0.75);
+              text-decoration: none;
+            }
+            a:hover {
+              color: #2D93BF;
+              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+
+            header #main-nav {
+                height: 120px;
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.33) 100%);
+                box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 3rem;
+            }
+            header #main-nav h1 {
+                color: #1BE4D8;
+                font-size: 2rem;
+            }
+
+            #main-content {
+                padding: 2rem 3rem;
+            }
+            #main-content h1#main-title {
+                text-align: center;
+                margin: 0 0 1rem 0;
+            }
+            #main-content p {
+                margin: 0;
+                padding: 0;
+            }
+            #main-content ul.card-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                max-width: 1440px;
+                margin: 0 auto;
+                gap: 1.5rem;
+            }
+            #main-content ul.card-container li.card {
+            margin: 0 auto;
+            padding: 1rem;
+            border: 0.5px black solid;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            border-radius: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+            height: 24rem;
+            width: 20rem;
+            }
+        </style>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <nav id="main-nav">
+                <h1>W//S</h1>
+            </nav>  
+        </header>
+
+        <div id="main-content">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
