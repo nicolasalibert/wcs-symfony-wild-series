@@ -1,0 +1,19 @@
+vich_uploader:
+    db_driver: orm
+
+    # préciser que le config se fait via les attributs PHP
+    metadata:
+        type: attribute
+
+    mappings:
+        # nom du mapping dans l'attribut de la propriété uploadable de l'entité :
+        poster_file:
+            uri_prefix: /uploads/images/posters
+            # lié à au paramètre dans services.yaml
+            upload_destination: '%poster_upload_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+        photo_file:
+            uri_prefix: /uploads/images/actors
+            upload_destination: '%actors_upload_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer

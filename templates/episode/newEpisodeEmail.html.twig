@@ -7,6 +7,6 @@
 {% block body %}
     <h1>New episode {{ episode.title }} created</h1>
     <p>Hello, the new episode "{{ episode.title }}" has been created on Wild Series</p>
-    <p>Series : <a href="{{ path('program_show', {slug: episode.season.program.slug}) }}">{{ episode.season.program.title }}</a></p>
+    <p>Series : <a href="http://127.0.0.1:8000{{ path('program_show', {slug: episode.season.program.slug}) }}">{{ episode.season.program.title }}</a></p>
     <p>Synopsis : {{episode.synopsis }}</p>
 {% endblock body %}

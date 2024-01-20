@@ -1,7 +1,16 @@
-{% extends "base.html.twig" %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Actor{% endblock %}
 
 {% block body %}
+    <a href="{{ path('app_actor_index') }}">back to list</a>
+
+    <a href="{{ path('app_actor_edit', {'id': actor.id}) }}">edit</a>
+
+    {{ include('actor/_delete_form.html.twig') }}
+
     <h1>{{ actor.name }}</h1>
+    <img src="{{ vich_uploader_asset(actor, 'photoFile') }}" alt="{{ actor.name }}'s photo">
     <h2>Programs :</h2>
 
     <ul class="card-container">
